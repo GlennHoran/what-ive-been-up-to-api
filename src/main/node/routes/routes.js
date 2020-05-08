@@ -3,7 +3,7 @@ import express from "express";
 import serverless from "serverless-http"
 import AWS from "aws-sdk/index"
 import bodyParser from "body-parser"
-import {getBlogPost, putBlogPost} from "./blogPosts";
+import {deleteBlogPost, getBlogPost, getBlogPosts, putBlogPost} from "./blogPosts";
 
 const app = express();
 const dynamoDb= new AWS.DynamoDB.DocumentClient();
@@ -26,7 +26,7 @@ app.get("/hello", (request, response) => {
 });
 
 
-app.get("/", async (request, response) => {
+app.get("/blogPost", async (request, response) => {
     try{
         const result = await getBlogPost(dynamoDb, request.query.id);
         response.send(result);
@@ -35,7 +35,25 @@ app.get("/", async (request, response) => {
     }
 });
 
-app.put("/", async (request, response) => {
+app.get("/blogPosts", async (request, response) => {
+    try{
+        const result = await getBlogPosts(dynamoDb);
+        response.send(result);
+    } catch(e){
+        response.send(400).body(e)
+    }
+});
+
+app.delete("/blogPost", async (request, response) => {
+    try{
+        const result = await deleteBlogPost(dynamoDb, request.query.id);
+        response.send(result);
+    } catch(e){
+        response.send(400).body(e)
+    }
+});
+
+app.put("/blogPost", async (request, response) => {
     try{
         const result = await putBlogPost(dynamoDb, request.body);
         response.send(result);
@@ -43,8 +61,6 @@ app.put("/", async (request, response) => {
         response.send(400).body(e)
     }
 });
-
-
 
 // const port = 3013;
 // app.listen(port, () => console.log(`Listening locally on port ${port}`));
