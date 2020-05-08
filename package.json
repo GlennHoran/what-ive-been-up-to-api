@@ -1,0 +1,42 @@
+{
+  "name": "what-ive-been-up-to-api",
+  "version": "1.0.0",
+  "description": "Included serverless file for creating dynamo db, website bucket and lambda api ",
+  "main": "src/main/node/routes/handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "serverless deploy",
+    "start": "cd src/main/node/routes && babel-node --presets es2015 routes.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GlennHoran/what-ive-been-up-to-api.git"
+  },
+  "author": "Glenn Horan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GlennHoran/what-ive-been-up-to-api/issues"
+  },
+  "homepage": "https://github.com/GlennHoran/what-ive-been-up-to-api#readme",
+  "dependencies": {
+    "aws-sdk": "latest",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-source-map-support": "^2.1.1",
+    "body-parser": "latest",
+    "cors": "^2.8.5",
+    "express": "latest",
+    "serverless-http": "^2.3.2",
+    "source-map-support": "^0.5.19",
+    "webpack": "^3.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "serverless-webpack": "^5.3.2",
+    "webpack": "^3.3.0",
+    "glob": "^7.1.6"
+  }
+}
